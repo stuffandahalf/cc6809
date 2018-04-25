@@ -1,35 +1,29 @@
+#define MC6809
+//#define MC68K
+//#define Z80
+//#define MOS6502
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "lib/cc_lib.h"
+#include "lib/string_lib.h"
 #include "lib/file_lib.h"
+
+//char, int, 
+
+//Type types[10] = 
 
 int main(int argc, char **argv)
 {
     CHECK_ERROR(argc < 2, "Syntax:\n./cc6809 fname.c\n");
+    //str code = read_file(argv[1]);
+    String *code = read_file(argv[1]);
+    //strtok(code, "\n");
+    printf("%s\n", code->contents);
     
-    FILE *cfile = fopen(argv[1], "r");
-    CHECK_ERROR(cfile == NULL, "File failed to open\n");
-    fseek(cfile, 0, SEEK_END);
-    int fsize = ftell(cfile);
-    CHECK_ERROR(!fsize, "File is empty\n");
-    fseek(cfile, 0, SEEK_SET);
-    
-    printf("%d\n", fsize);
-    
-    //str buffer[fsize];
-    str buffer = malloc(sizeof(char) * fsize);
-    int index = 0;
-    
-    while((buffer[index] = fgetc(cfile)) != EOF) {
-        index++;
-    }
-    
-    printf("%s", buffer);
-    
-    fclose(cfile);
-    
-    free(buffer);
+    freeString(code);
 	return 0;
 }
 

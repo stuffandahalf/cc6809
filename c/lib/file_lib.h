@@ -4,9 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "string_lib.h"
 #include "cc_lib.h"
 
-str read_file(str fname);
-int file_size(FILE *fp);
+String *read_file(str fname);
+size_t file_size(FILE *fp);
+//str *split_str(str string, char delim);
 
 #endif

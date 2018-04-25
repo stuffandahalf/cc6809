@@ -1,26 +1,31 @@
 #include "lib/file_lib.h"
 
-str read_file(str fname) {
+String *read_file(str fname) {
     FILE *fp = fopen(fname, "r");
     CHECK_ERROR(fp == NULL, "File failed to open\n");
     
-    int fsize = file_size(fp);
+    size_t fsize = file_size(fp);
     CHECK_ERROR(!fsize, "File is empty\n");
     
-    str contents = malloc(sizeof(char) * fsize);
-    int index = 0;
+    String *string = allocString(fsize);
     
-    while((contents[index] = fgetc(fp)) != EOF) {
-        index++;
+    for (int i = 0; i < fsize; i++) {
+        string->contents[i] = fgetc(fp);
     }
-    printf("%d\n", index);
-    return contents;
+    
+    return string;
 }
 
-int file_size(FILE *fp) {
+size_t file_size(FILE *fp) {
     fseek(fp, 0, SEEK_END);
-    int fsize = ftell(fp);
+    size_t fsize = ftell(fp);
     fseek(fp, 0, SEEK_SET);
     
-    return fsize;
+    return fsize - 1;   //ignore EOF
 }
+
+/*
+str *split_str(str string, char delim) {
+    int count = 0;
+    while(
+}*/
