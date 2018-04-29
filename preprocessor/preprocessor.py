@@ -8,7 +8,7 @@ import re
 def LIB(): return '../include'
 def INCLUDE_PATTERN(): return re.compile(r'\A\#include\s*(?P<fname>(<|").*(>|")).*')
 def DEFINE_MULTI_PATTERN(): return re.compile(r'')
-def DEFINE_SINGLE_PATTERN(): return re.compile(r'\A\#define\s+(?P<key>.+)\s')
+def DEFINE_SINGLE_PATTERN(): return re.compile(r'\A\#define\s+(?P<key>.+)\s+(?P<value>.*)')
 
 defines = {}
 
@@ -24,12 +24,15 @@ def parse(code):
             
         elif lines[line_num].strip().startswith('#define'):
             #pass
-            #match = DEFINE_MULTI_PATTERN().match(lines[line_num].strip())
-            #if match == None:
-            print 'searching for single line'
-            match = DEFINE_SINGLE_PATTERN().match(lines[line_num].strip())
-            print match
-            #print match.group('key')
+            match = DEFINE_MULTI_PATTERN().match(lines[line_num].strip())
+            if match != None:
+                pass
+            else:
+                #print 'searching for single line'
+                match = DEFINE_SINGLE_PATTERN().match(lines[line_num].strip())
+                #print match.group('key')
+                #print match.group('value')
+                defines[match.group('key')] = match.group('value')
         #elif
     #print lines
     
@@ -44,6 +47,8 @@ def main(args):
     code = cfile.read().strip()
     
     parsed_code = parse(code)
+    
+    print defines
     
     #if parsed_code == :
         
