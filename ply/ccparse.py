@@ -1,14 +1,7 @@
-# -*- coding: utf-8 -*-
+# Written by Gregory Norton
+# Based from https://github.com/dabeaz/ply/blob/master/example/ansic/cparse.py
 
-# Equivalent YACC
-# assign  : NAME EQUALS expr
-# expr    : expr PLUS term
-        # | expr MINUS term
-        # | term
-# term    : term TIMES factor
-        # | term DIVIDE factor
-        # | factor
-# factor  : NUMBER
+# -*- coding: utf-8 -*-
 
 import ply.yacc as yacc
 import cclex
@@ -21,7 +14,10 @@ tokens = cclex.tokens
 # )
 
 def p_assign(p):
-    '''assign : NAME EQUALS expr'''
+    '''assign : ID EQUALS expr'''
+    #'''assign : TYPEID ID EQUALS expr'''
+    #print len(p)
+    #print p.__dict__
 
 def p_expr(p):
     '''expr : expr PLUS term
@@ -31,10 +27,11 @@ def p_expr(p):
 def p_term(p):
     '''term : term TIMES factor
             | term DIVIDE factor
+            | term MOD factor
             | factor'''
 
 def p_factor(p):
-    '''factor : NUMBER'''
+    '''factor : ICONST'''
 
 ccparser = yacc.yacc()
 
@@ -44,5 +41,6 @@ def parse(data, debug=0):
     if ccparser.error:
         return None
     return p
+    
 #ast = ccparser.parse(cclex.str)
 #print ast
