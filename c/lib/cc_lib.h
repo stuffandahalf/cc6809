@@ -24,7 +24,7 @@ void freeType(Type *type);
 
 #if defined(MC6809) || defined(MOS6502) || defined(Z80)
 const Type types[TYPES] = {
-    { .key = "*", .bytes = 2 },
+    { .key = "*", .bytes = 2 },     //sizeof(pointer)
     { .key = "void", .bytes = 0 },
     { .key = "char", .bytes = 1 },
     { .key = "byte", .bytes = 1 },
