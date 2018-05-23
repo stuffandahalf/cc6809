@@ -20,6 +20,7 @@ reserved = {
     'for' : 'FOR',
     'goto' : 'GOTO',
     'if' : 'IF',
+    'int' : 'INT',
     'long' : 'LONG',
     'register' : 'REGISTER',
     'return' : 'RETURN',
@@ -61,9 +62,9 @@ reserved = {
     ';' : 'SEMICOLON',
     ',' : 'COMMA',
     ':' : 'COLON',
-    '=' : 'EQUALS',
-    '(' : 'LPAREN',
-    ')' : 'RPAREN',
+    #'=' : 'EQUALS',
+    #'(' : 'LPAREN',
+    #')' : 'RPAREN',
     '.' : 'PERIOD',
     '&' : 'BIT_AND',
     '|' : 'BIT_OR',
@@ -111,16 +112,25 @@ reserved = {
 #)
 
 tokens = tuple(reserved.values()) + (
+    'EQUALS',
     'STRING_LITERAL',
     'LBRACE', 'RBRACE',
-    'LBRACKET', 'RBRACKET'
+    'LBRACKET', 'RBRACKET',
+    'LPAREN', 'RPAREN',
+    'ID'
 )
 
 # Ignore these characters
 #t_ignore = ' \t\0x0C'
 t_ignore = ' \t\v\n\f'
 
+t_EQUALS = '='
+
+t_LPAREN = '\('
+t_RPAREN = '\)'
+
 def t_error(t):
+    print t
     print 'Illegal Character'
     t.lexer.skip(1)
 
@@ -150,9 +160,9 @@ t_RBRACKET = r'\]|:>'
 
 lexer = lex.lex(debug = 0)
 
-lexer.input(']')
-while True:
-    tok = lexer.token()
-    if not tok:
-        break
-    print tok
+#lexer.input(']')
+#while True:
+    #tok = lexer.token()
+    #if not tok:
+        #break
+    #print tok
