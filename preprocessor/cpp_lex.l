@@ -16,20 +16,22 @@ void yyerror();
 
 %%
 
-"#"         { return POUND; }
-"//"[^\n]*  { /* Discard preprocessor comments. */}
-"/*"        { comment(); }
-[ \t\n]+    { /* Ignore whitespace */ }
+"#"             { return POUND; }
+"//"[^\n]*      { /* Discard preprocessor comments. */}
+"/*"            { comment(); }
+[ \t\n]+        { /* Ignore whitespace */ }
 
-"{"         { return OPEN_BRACE; }
-"}"         { return CLOSE_BRACE; }
-"("         { return '('; }
-")"         { return ')'; }
-","         { return ','; }
+"{"             { return OPEN_BRACE; }
+"}"             { return CLOSE_BRACE; }
+"("             { return '('; }
+")"             { return ')'; }
+","             { return ','; }
 
-"\\"        { return '\'}
+"\\"            { return '\'}
 
 {L}({L}|{D})*   { yylval = strdup(yytext); return IDENTIFIER; }
+"include"       { return INCLUDE; }
+"define"        { return DEFINE; }
 
 %%
 
