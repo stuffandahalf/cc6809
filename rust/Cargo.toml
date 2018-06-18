@@ -1,6 +1,0 @@
-[package]
-name = "cc6809"
-version = "0.1.0"
-authors = ["Gregory Norton <gregory.norton@me.com>"]
-
-[dependencies]
