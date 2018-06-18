@@ -36,4 +36,3 @@ int             { return TYPE; }
 {D}+            { yylval = strdup(yytext); return NUMBER; }
 
 %%
-
