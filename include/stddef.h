@@ -5,4 +5,6 @@ typedef uint16_t size_t;
 
 #define NULL ((void *)0)
 
-#endif
+#define offsetof(TYPE, MEMBER) ((size_t)&(((TYPE *)0)->MEMBER))
+
+endif
