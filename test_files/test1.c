@@ -1,5 +1,4 @@
 int main ()
 {
-    int *ptr = NULL;
-    return 2;
+    return 0;
 }
