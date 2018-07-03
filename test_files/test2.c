@@ -3,7 +3,7 @@
 
 int main (int argc, char **argv)
 {
-    #include "test.inc"
+    #include "test2.inc"
     //int x = 5;
     int x = TEST;
     int y = 5;
