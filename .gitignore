@@ -3,3 +3,5 @@
 *.class
 */parser.out
 */parsetab.py
+
+out.c

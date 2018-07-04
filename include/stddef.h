@@ -1,7 +1,10 @@
 #ifndef _STDDEF_H
 #define _STDDEF_H
 
-typedef uint16_t size_t;
+typedef unsigned short int size_t;
+typedef short int ptrdiff_t;
+
+typedef unsigned short int wchar_t;  
 
 #define NULL ((void *)0)
 

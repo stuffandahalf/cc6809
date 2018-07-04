@@ -1,1 +1,1 @@
-printf("hello test\n");
+int z = x + y;
